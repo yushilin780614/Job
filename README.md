@@ -33,12 +33,12 @@ src\main\java\com\show\job\controller\FirstController.java=>利用JPA顯示測�
 src\main\resources\templates\index.html=>顯示測試結果頁面，並用Ajax動態取得單筆的完整資料內容
 
 
-3. RESTful API
+2. RESTful API
 
 src\main\java\com\show\job\rest\RestController.java=>測試簡單的RESTful API
 
 
-4. Spring Bean
+3. Spring Bean
 
 src\main\java\com\show\job\service\DirectService.java=>測試直接加上"@Component"，來產生Spring Been
 
@@ -47,7 +47,7 @@ src\main\java\com\show\job\service\ContextService.java=>準備測試在"ServiceC
 src\main\java\com\show\job\ServiceConfig.java=>測試在"ServiceConfig.java"，來產生Spring Been
 
 
-5. Spring AOP
+4. Spring AOP
 
 src\main\java\com\show\job\entity\Count.java=>假裝資料庫中，已經有一個資料表"Request Count"，記錄收到多少次Request
 
@@ -62,6 +62,6 @@ src\main\resources\templates\index.html=>顯示收到多少次Request結果頁�
 src\main\java\com\show\job\service\SseService.java=>用來處理所有Server-Sent Event，相關的事務
 
 
-6. 其他
+5. 其他
 
 src\main\java\com\show\job\SecurityConfig.java=>基礎的安全設定，為了簡單通過Spring Security，所以設定極為簡單
