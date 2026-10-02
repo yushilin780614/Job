@@ -2,7 +2,7 @@
 作為Spring Boot一般測試用途
 
 啟動專案後，可執行的測試如下：
-一、瀏覽器輸入網址："http://localhost:8080/"；然後輸入帳號"user1"、密碼"111"；即可看到除了"RESTful API"外的成果
+一、瀏覽器輸入網址： "http://localhost:8080/" ；然後輸入帳號"user1"、密碼"111"；即可看到除了"RESTful API"外的成果
 二、API測試：curl -i -X POST \
    -H "Authorization:Basic dXNlcjE6MTEx" \
    -H "Content-Type:application/json" \
