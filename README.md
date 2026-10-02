@@ -21,10 +21,15 @@
 1. Spring Data JPA
 
 src\main\resources\application.properties=>設定H2資料庫
+
 src\main\java\com\show\job\entity\Message.java=>假裝資料庫中，已經有一個資料表"ExchangeMessage"，記錄內部通訊往來
+
 src\main\java\com\show\job\repository\MessageRepository.java=>查詢JPA"Message"的工具
+
 src\main\java\com\show\job\StarterRunner.java=>因為是H2資料庫，所以每次啟動Java程式時，塞入一些假的測試資料
+
 src\main\java\com\show\job\controller\FirstController.java=>利用JPA顯示測試結果頁面的Controller，主要看"index"、"getFullMsg"兩個方法
+
 src\main\resources\templates\index.html=>顯示測試結果頁面，並用Ajax動態取得單筆的完整資料內容
 
 
@@ -36,17 +41,24 @@ src\main\java\com\show\job\rest\RestController.java=>測試簡單的RESTful API
 4. Spring Bean
 
 src\main\java\com\show\job\service\DirectService.java=>測試直接加上"@Component"，來產生Spring Been
+
 src\main\java\com\show\job\service\ContextService.java=>準備測試在"ServiceConfig.java"，來產生Spring Been
+
 src\main\java\com\show\job\ServiceConfig.java=>測試在"ServiceConfig.java"，來產生Spring Been
 
 
 5. Spring AOP
 
 src\main\java\com\show\job\entity\Count.java=>假裝資料庫中，已經有一個資料表"Request Count"，記錄收到多少次Request
+
 src\main\java\com\show\job\repository\CountRepository.java=>查詢JPA"Count"的工具
+
 src\main\java\com\show\job\aop\CountAop.java=>記錄總共收到多少次Request，並通知顯示測試結果頁面，更新資料
+
 src\main\java\com\show\job\controller\FirstController.java=>利用JPA顯示測試結果頁面的Controller，主要看"getCount"方法
+
 src\main\resources\templates\index.html=>顯示收到多少次Request結果頁面，並用Server-Sent Event動態更新內容
+
 src\main\java\com\show\job\service\SseService.java=>用來處理所有Server-Sent Event，相關的事務
 
 
