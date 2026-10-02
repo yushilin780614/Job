@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <title>Test</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <!-- 從後端帶來現在日期時間 -->
+        後端帶來的日期時間：<span th:text="${nowDateTime}"></span><br/>
+        <br />
+         <!-- 利用AOP計算的Request次數 -->
+        打Request給後端的次數：<span id="countView">Reading!</span><br />
+        <br />
+
+        <!-- 顯示從H2查到的資料 -->
+        <table>
+            <tr>
+                <th>訊息建立時間</th>
+                <th>使用者帳號</th>
+                <th>使用者名稱</th>
+                <th>訊息按讚數</th>
+                <th>簡短訊息內容</th>
+                <th></th>
+            </tr>
+            <tr th:each=" msg: ${msgL}">
+                <td th:text="${msg.createDate}"></td>
+                <td th:text="${msg.uid}"></td>
+                <td th:text="${msg.name}"></td>
+                <td th:text="${msg.likedCount}"></td>
+                <td th:text="${msg.shortMsg}"></td>
+
+                <!-- 提供按鈕，向後端查詢"完整訊息內容" -->
+                <td><button th:value="${msg.id}" class="fullMsgButton">完整訊息</button></td>
+            </tr>
+        </table>
+        <br/>
+
+        <!-- 用來顯示"完整訊息內容"的框架 -->
+        <div id="showPosition" style="display:none;">
+            <!-- 隱藏框架的按鈕 -->
+            <button onclick="document.getElementById('showPosition').style.display='none';">關閉</button><br/>
+            <!-- 顯示"完整訊息內容"的位置 -->
+            <span id="fullMsgV"></span>
+        </div>
+
+        <script>
+            <!-- 設定按鈕的onclick事件 -->
+            let btn=document.querySelectorAll(".fullMsgButton");
+            btn.forEach(function(item){
+                item.onclick=function(v){
+                    <!-- 取出在按鈕裡放置的資料Id值 -->
+                    let msgId=v.target.value;
+
+                    <!-- 以POST打Ajax向後端"FirstController.java"查詢 -->
+                    fetch("/msg",{
+                        method: "POST",
+                        <!-- 以JSON的方式帶值到後端"FirstController.java" -->
+                        headers:{ "Content-Type": "application/json" },
+                        body: JSON.stringify({id: msgId}),
+                    }).then(resp=>resp.json()
+                    ).then(resp=>{
+                        <!-- 頁面顯示完整訊息內容 -->
+                        <!-- alert("resp.fullMsg="+resp.fullMsg); -->
+                        document.getElementById('fullMsgV').innerHTML="完整訊息內容=>"+resp.fullMsg;
+                        document.getElementById('showPosition').style.display="block";
+                    });
+                };
+            });
+
+            <!-- 建立Server-Sent Event的監聽器 -->
+            const evt=new EventSource("viewCount");
+            evt.addEventListener("countUpdate", function(event){
+                console.log("event: "+event);
+                document.getElementById("countView").innerHTML=event.data;
+            });
+
+        </script>
+    </body>
+</html>
+
+<style>
+    table, th, td{
+        border: 1px solid;
+    }
+</style>
