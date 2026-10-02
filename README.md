@@ -3,6 +3,7 @@
 
 啟動專案後，可執行的測試如下：
 一、瀏覽器輸入網址： "http://localhost:8080/" ；然後輸入帳號"user1"、密碼"111"；即可看到除了"RESTful API"外的成果
+
 二、API測試：curl -i -X POST \
    -H "Authorization:Basic dXNlcjE6MTEx" \
    -H "Content-Type:application/json" \
@@ -13,6 +14,7 @@
 }' \
  'http://localhost:8080/search'
 
+程式內容說明
 1. Spring Data JPA
 src\main\resources\application.properties=>設定H2資料庫
 src\main\java\com\show\job\entity\Message.java=>假裝資料庫中，已經有一個資料表"ExchangeMessage"，記錄內部通訊往來
